@@ -1,0 +1,31 @@
+{% extends 'main.html' %} 
+
+{% block content %}
+
+{% comment %} <form action="" method="POST" enctype="multipart/form-data">
+  {% csrf_token %} 
+  {{form.as_p}}
+  <input type="submit" />
+</form> {% endcomment %}
+
+
+<!-- Main Section -->
+<main class="formPage my-xl">
+  <div class="content-box">
+      <div class="formWrapper">
+          <a class="backButton" href="{% url "food_details" perticular_food.id %}"><i class="im im-angle-left"></i></a>
+          <form action="" method="POST">
+            {% csrf_token %} 
+              <h1 class="singleProject__subtitle"> Are you sure you want to delete the food? </h1><br>
+              <input class="btn btn-danger" type="submit" value="YES" />
+              <a href="{% url "food_details" perticular_food.id %}"> <div class="btn btn-primary"> CANCEL </div> </a>
+          </form>
+
+      </div>
+  </div>
+</main>
+
+{% endblock %}
+
+
+##This a database form making for adding new owner based on our module db(class Owner_Panel)

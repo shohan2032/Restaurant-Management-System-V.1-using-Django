@@ -1,0 +1,67 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+{% comment %} <h1> All Owner List: </h1>
+
+{%for o in ownerlist%}
+<br>
+  <a href = "{% url "Owner_details" o.id %}">{{o.name | title}}</a>
+  <a href = "{% url "edit_owner" o.id %}"> <br>Edit {{o.name | title}}</br></a>
+</br>
+{% endfor %} {% endcomment %}
+
+<!-- Owner Panel Section -->
+<main class="projects">
+
+  <section class="hero-section text-center">
+    <div class="container container--narrow">
+      <div class="hero-section__box">
+        <h2><span>Search for Owner</span></h2>
+      </div>
+
+      <div class="hero-section__search">
+        <form class="form" action="#" method="get">
+          <div class="form__field">
+            <label for="formInput#search">Search By Owners </label>
+            <input class="input input--text" id="formInput#search" type="text" name="search_owner"
+              placeholder="Search By Owner Name, ID, Gmail or Number", value="{{ search_owner }}" />
+          </div>
+          <input class="btn btn--sub btn--lg" type="submit" value="Search" />
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Search Result: OwnerList -->
+  <section class="projectsList">
+    <div class="container">
+      <div class="grid grid--three">
+      {%for o in owners%}  
+        <div class="column">
+          <div class="card project">
+            <a href="{% url "Owner_details" o.id %}" class="project">
+              <img class="project__thumbnail" src="{{ o.featured_image.url }}" alt="project thumbnail" />
+              <div class="card__body">
+                <h3 class="project__title">{{o.name | title}}</h3>
+                <h3 class="project__title">OnwerShip: {{o.ownership}}%</h3>
+                {% comment %} <div class="project__tags">
+                  <span class="tag tag--pill tag--main">
+                    <small></small>
+                  </span>
+                </div> {% endcomment %}
+                {% comment %} <a href = "{% url "edit_owner" o.id %}"> Edit {{o.name | title}}</a>
+                <a href = "{% url "delete_owner" o.id %}"> Delete {{o.name | title}}</a> {% endcomment %}
+              </div>
+            </a>
+          </div>
+          {% comment %} <a href = "{% url "edit_owner" o.id %}"> <br>Edit {{o.name | title}}</br></a> {% endcomment %}
+        </div>
+      {% endfor %}  
+      </div>
+    </div>
+  </section>
+
+</main>
+{% endblock %}

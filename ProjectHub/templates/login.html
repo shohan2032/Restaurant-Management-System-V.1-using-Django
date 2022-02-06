@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+        <!-- Favicon -->
+        <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+        <!-- Icon - IconMonster -->
+        <link
+          rel="stylesheet"
+          href="https://cdn.iconmonstr.com/1.3.0/css/iconmonstr-iconic-font.min.css"
+        />
+        <!-- Mumble UI -->
+        <link rel="stylesheet" href="{% static 'uikit/styles/uikit.css' %}" />
+        <!-- Restaurant Management System UI -->
+        <link rel="stylesheet" href="{% static 'styles/app.css' %}" />
+    
+        <title>Restaurant Management System</title>
+      </head>
+
+    <body>
+        <header class="header">
+            <div class="container container--narrow">
+              <a href="{% url 'ownerlogin' %}" class="header__logo">
+                <img src="{% static 'images/logo1.jpg' %}" alt="Restaurant Management System Logo" />
+              </a>
+              <nav class="header__nav">
+                <input type="checkbox" id="responsive-menu" />
+                <label for="responsive-menu" class="toggle-menu">
+                  <span>Menu</span>
+                  <div class="toggle-menu__lines"></div>
+                </label>
+                <ul class="header__menu">
+                  <li class="header__menuItem">
+                    <a href="{% url 'ownerlogin' %}">Login</a>
+                  </li> 
+                </ul>
+              </nav>
+            </div>
+        </header>
+        <br/>
+        <div class="container">
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>{{ message }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            {% endfor %}
+          {% endif %}
+          
+          {% block content %}
+          {% endblock  %}
+        </div>
+    </body>
+
+</html>

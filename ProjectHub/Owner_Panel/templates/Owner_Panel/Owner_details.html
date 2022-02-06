@@ -1,0 +1,73 @@
+{% extends 'main.html' %}
+
+{% block content%}
+
+{% comment %} <h1>Details of this owner:</h1>
+  <hr>
+    <h2>
+      <img src="{{ particular_owner.featured_image.url }}" width="300">
+      <p>Owner Unique ID:{{ particular_owner.id }}</p>
+      <p>Owner Name:{{ particular_owner.name | title }}</p>
+      <p>Owner Gmail:{{ particular_owner.gmail }}</p>
+      <p>Owner Number:{{ particular_owner.number}}</p>
+    </h2>
+  </hr> {% endcomment %}
+
+
+<!-- Main Section -->
+<main class="single_owner_details">
+  <div class="container">
+    <div class="layout">
+      <div class="column column--1of3">
+        <h3 class="singleProject__subtitle">Social Platform</h3>
+        
+        {%if particular_owner.Facebook_URL %}
+          <a class="singleProject__liveLink" href="{{ particular_owner.Facebook_URL }}" target="_blank"><i class="im im-external-link"></i>Facebook URL </a> 
+        {%endif%}
+        {%if particular_owner.Facebook_URL == false %}
+          <a class="singleProject__liveLink" href="#" title="Did Not Given URL!"><i class="popBox"></i>Facebook URL </a>
+        {%endif%}
+        {%if particular_owner.Linkedin_URL %}
+          <a class="singleProject__liveLink" href="{{ particular_owner.Linkedin_URL }}" target="_blank"><i class="im im-external-link"></i>Linkedln URL </a> 
+        {%endif%} 
+        {%if particular_owner.Linkedin_URL == false %}
+          <a class="singleProject__liveLink" href="#" title="Did Not Given URL!"><i class="im im-external-link"></i>Linkedln URL </a> 
+        {%endif%}
+        {%if particular_owner.Instagram_URL %}
+          <a class="singleProject__liveLink" href="{{ particular_owner.Instagram_URL }}" target="_blank"><i class="im im-external-link"></i>Instagram URL </a> 
+        {%endif%}
+        {%if particular_owner.Instagram_URL == false %}
+          <a class="singleProject__liveLink" href="#" title="Did Not Given URL!"><i class="im im-external-link"></i>Instagram URL </a> 
+        {%endif%}
+        
+        <div class="owneredit__toolStack">
+          <span class="tag tag--pill tag--sub tag--lg">
+            <small><a class="owner__editLink" href = "{% url "edit_owner" particular_owner.id %}"> Edit {{particular_owner.name | title}} </a></small>
+          </span>
+        </div>
+
+        <div class="ownerdelete__toolStack">
+          <span class="tag tag--pill tag--sub tag--lg">
+            <small><a class="owner__deleteLink" href = "{% url "delete_owner" particular_owner.id %}"> Delete {{particular_owner.name | title}} </a></small>
+          </span>
+        </div>
+
+      </div>
+      
+      <div class="column column--2of3">
+        <h2 class="singleProject__subtitle"> {{ particular_owner.name | title}}'s Profile: </h2>
+        <img class="singleProject__preview" src="{{ particular_owner.featured_image.url }}" alt="portfolio thumbnail" />
+        <h3 class="singleProject__subtitle">Created Date:{{ particular_owner.created }}</h3>
+        <h3 class="singleProject__subtitle">Owner Unique ID:{{ particular_owner.id }}</h3>
+        <h3 class="singleProject__subtitle">Owner Name:{{ particular_owner.name }}</h3>
+        <h3 class="singleProject__subtitle">Owner Gmail:{{ particular_owner.gmail }}</h3>
+        <h3 class="singleProject__subtitle">Owner Number:{{ particular_owner.number }}</h3>
+        <h3 class="singleProject__subtitle">Ownership:{{ particular_owner.ownership }}</h3>
+      </div>
+    </div>
+  </div>
+  </div>
+</main>
+</body>
+
+{% endblock %}
