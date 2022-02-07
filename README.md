@@ -6,12 +6,19 @@ To Run this Project
 Open cmd in File Directory and Type these Following Commands
 
 virtualenv env
+
 cd env
-pip install -r requirements.txt
+
 cd Scripts
+
 activate
+
 cd..
+
 cd..
+
+pip install -r requirements.txt
+
 python manage.py runserver
 
 
