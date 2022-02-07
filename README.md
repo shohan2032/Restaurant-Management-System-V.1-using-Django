@@ -10,13 +10,10 @@ cd env
 pip install -r requirements.txt
 cd Scripts
 activate
-activate
 cd..
 cd..
 python manage.py runserver
 
 
 Developed By:
-Md Shahiduzzaman (Dept of CSE, IIUC , Batch 48)
-Projnajit Barua (Dept of CSE, IIUC , Batch 48)
-Tarek Ashraf (Dept of CSE, IIUC , Batch 48)
+Md. Shohan (Dept of CSE, IIUC , Batch 51)
