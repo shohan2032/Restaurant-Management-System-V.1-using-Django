@@ -9,8 +9,6 @@ virtualenv env
 
 cd env
 
-pip install -r requirements.txt
-
 cd Scripts
 
 activate
@@ -18,6 +16,8 @@ activate
 cd..
 
 cd..
+
+pip install -r requirements.txt
 
 python manage.py runserver
 
