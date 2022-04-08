@@ -20,7 +20,7 @@
             {% csrf_token %} 
               <!-- Input:Text -->
               <div class="form__field">
-                {{form.as_p}}
+                {{form.as_table}}
                   {% comment %} <label for="formInput#text">Text Field: </label>
                   <input class="input input--text" id="formInput#text" type="text" name="text"
                   placeholder="Enter text" /> {% endcomment %}

@@ -8,9 +8,11 @@ from .createFoodForms import addFood
 from .utils import searchOwners,searchfoods
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 
 ##Showing all owner in a page with this fucntion
+@login_required(login_url='ownerlogin')
 def Owner_list(request):
     owners, search_owner = searchOwners(request)
     context = {'owners':owners,
@@ -21,6 +23,7 @@ def Owner_list(request):
 
 
 ##Showing all details of an owner with this function 
+@login_required(login_url='ownerlogin')
 def Owner_details(request,owner_id):
     perticular_owner_details = Owner_Panel.objects.get(id=owner_id)
     context = {'particular_owner':perticular_owner_details}
@@ -28,6 +31,7 @@ def Owner_details(request,owner_id):
 
 
 ##Adding new owner to owner list with this function
+@login_required(login_url='ownerlogin')
 def create_owner(request):
     form = createOwner()
     context = {'form':form}
@@ -35,6 +39,7 @@ def create_owner(request):
         form = createOwner(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            messages.success(request,"Successfully Added")
             return redirect('Owner_list')
         else:
             return HttpResponse('<h1>Owner not Created</h1>')
@@ -44,6 +49,7 @@ def create_owner(request):
 
 
 ##Editing owner information with this function
+@login_required(login_url='ownerlogin')
 def edit_owner(request,owner_id):
     perticular_owner_details = Owner_Panel.objects.get(id=owner_id)
     form = editOwner(instance=perticular_owner_details)
@@ -52,15 +58,18 @@ def edit_owner(request,owner_id):
         form = editOwner(request.POST, request.FILES, instance=perticular_owner_details)
         if form.is_valid():
             form.save()
+            messages.success(request,"Successfully Edited")
             return redirect('Owner_details',owner_id)
     return render(request,'Owner_Panel/edit_owner.html', context)
 
 
 ##Deleting an owner from the owner list with this function
+@login_required(login_url='ownerlogin')
 def delete_owner(request,owner_id):
     perticular_owner_details = Owner_Panel.objects.get(id=owner_id)
     if request.method == 'POST':
         perticular_owner_details.delete()
+        messages.success(request,"Successfully Deleted")
         return redirect('Owner_list')
     context = {'perticular_owner':perticular_owner_details}
     return render(request,'Owner_Panel/delete_owner.html', context)
@@ -82,6 +91,7 @@ def ownerlogin(request):
 
 
 ##logout function for an owner
+@login_required(login_url='ownerlogin')
 def owner_logout(request):
     logout(request)
     messages.success(request,"Successfully logged out")
@@ -89,6 +99,7 @@ def owner_logout(request):
 
 
 ##Showing all food menu in a page with this fucntion
+@login_required(login_url='ownerlogin')
 def food_list(request):
     foods, search_food = searchfoods(request)
     context = {'foods':foods,
@@ -97,6 +108,7 @@ def food_list(request):
 
 
 ##Showing all details of a food with this function 
+@login_required(login_url='ownerlogin')
 def food_details(request,food_id):
     perticular_food_details = Food_Panel.objects.get(id=food_id)
     context = {'particular_food':perticular_food_details}
@@ -104,6 +116,7 @@ def food_details(request,food_id):
 
 
 ##editting a particular food menu with this function
+@login_required(login_url='ownerlogin')
 def edit_food(request,food_id):
     perticular_food_details = Food_Panel.objects.get(id=food_id)
     form = editFood(instance=perticular_food_details)
@@ -112,21 +125,25 @@ def edit_food(request,food_id):
         form = editFood(request.POST, request.FILES, instance=perticular_food_details)
         if form.is_valid():
             form.save()
+            messages.success(request,"Successfully Updated")
             return redirect('food_details',food_id)
     return render(request,'Owner_Panel/edit_food.html', context)
 
 
 ##deleting a food menu from the food list with this funtion
+@login_required(login_url='ownerlogin')
 def delete_food(request,food_id):
     perticular_food_details = Food_Panel.objects.get(id=food_id)
     if request.method == 'POST':
         perticular_food_details.delete()
+        messages.success(request,"Successfully Deleted")
         return redirect('food_list')
     context = {'perticular_food':perticular_food_details}
     return render(request,'Owner_Panel/delete_food.html', context)
 
 
 ##Adding new food menu to the food list with this function
+@login_required(login_url='ownerlogin')
 def add_food(request):
     form = addFood()
     context = {'form':form}
@@ -134,6 +151,7 @@ def add_food(request):
         form = addFood(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            messages.success(request,"Successfully Added")
             return redirect('food_list')
         else:
             return HttpResponse('<h1>Food not Created</h1>')

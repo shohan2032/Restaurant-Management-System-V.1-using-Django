@@ -29,6 +29,14 @@
 
         {% endblock  %}
 
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+          {% if messages %}
+            {% for message in messages %}
+              swal('{{message}}');
+            {% endfor %}
+          {% endif %}
+       </script>
         {%block content-about%}
 
         {% endblock  %}

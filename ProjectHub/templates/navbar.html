@@ -2,39 +2,42 @@
 
 <!-- Header Section -->
 <header class="header">
-    <div class="container container--narrow">
-      <a href="{% url 'Owner_list' %}" class="header__logo">
-        <img src="{% static 'images/logo1.jpg' %}" alt="Restaurant Management System Logo" />
-      </a>
-      <nav class="header__nav">
-        <input type="checkbox" id="responsive-menu" />
-        <label for="responsive-menu" class="toggle-menu">
-          <span>Menu</span>
-          <div class="toggle-menu__lines"></div>
-        </label>
-        <ul class="header__menu">
-          <li class="header__menuItem">
-            <a href="{% url 'Owner_list' %}">Owners</a>
-          </li>
-          <li class="header__menuItem">
-            <a href="{% url 'create_owner' %}">Add Owner</a>
-          </li>
-          <li class="header__menuItem">
-            <a href="{% url 'food_list' %}">FoodMenu</a>
-          </li> 
-          <li class="header__menuItem">
-            <a href="{% url 'add_food' %}">Add Food</a>
-          </li> 
-          {% comment %} {% if user.is_authenticated %} {% endcomment %}
-            <li class="header__menuItem">
-              <a href="{% url 'owner_logout' %}">Logout</a>
-            </li> 
-          {% comment %} {% else %}
-            <li class="header__menuItem">
-              <a href="{% url 'ownerlogin' %}">Login</a>
-            </li> 
-          {% endif %} {% endcomment %}
-        </ul>
-      </nav>
-    </div>
-  </header>
+  <div class="container container--narrow">
+    <a href="{% url 'Owner_list' %}" class="header__logo">
+      <img
+        src="{% static 'images/logo1.jpg' %}"
+        alt="Restaurant Management System Logo"
+      />
+    </a>
+    <nav class="header__nav">
+      <input type="checkbox" id="responsive-menu" />
+      <label for="responsive-menu" class="toggle-menu">
+        <span>Menu</span>
+        <div class="toggle-menu__lines"></div>
+      </label>
+      <ul class="header__menu">
+        <li class="header__menuItem">
+          <a href="{% url 'Owner_list' %}">Owners</a>
+        </li>
+        <li class="header__menuItem">
+          <a href="{% url 'create_owner' %}">Add Owner</a>
+        </li>
+        <li class="header__menuItem">
+          <a href="{% url 'food_list' %}">FoodMenu</a>
+        </li>
+        <li class="header__menuItem">
+          <a href="{% url 'add_food' %}">Add Food</a>
+        </li>
+        {% comment %} {% if user.is_authenticated %} {% endcomment %}
+        <li class="header__menuItem">
+          <a href="{% url 'owner_logout' %}">Logout</a>
+        </li>
+        {% comment %} {% else %}
+        <li class="header__menuItem">
+          <a href="{% url 'ownerlogin' %}">Login</a>
+        </li>
+        {% endif %} {% endcomment %}
+      </ul>
+    </nav>
+  </div>
+</header>

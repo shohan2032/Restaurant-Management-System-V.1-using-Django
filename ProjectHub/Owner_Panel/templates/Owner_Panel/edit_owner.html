@@ -15,18 +15,19 @@
       <div class="formWrapper">
           <a class="backButton" href="{% url "Owner_details" perticular_owner.id %}"><i class="im im-angle-left"></i></a>
           <br>
-
-          <form action="" method="POST" enctype="multipart/form-data">
-            {% csrf_token %} 
-              <!-- Input:Text -->
-              <div class="form__field">
-                {{form.as_p}}
-                  {% comment %} <label for="formInput#text">Text Field: </label>
-                  <input class="input input--text" id="formInput#text" type="text" name="text"
-                  placeholder="Enter text" /> {% endcomment %}
-              </div>
-              <input class="btn btn--sub btn--lg  my-md" type="submit" value="Submit" />
-          </form>
+          <div class="form-group">
+            <form action="" method="POST" enctype="multipart/form-data">
+              {% csrf_token %} 
+                <!-- Input:Text -->
+                <div class="form__field">
+                  {{form.as_table}}
+                    {% comment %} <label for="formInput#text">Text Field: </label>
+                    <input class="input input--text" id="formInput#text" type="text" name="text"
+                    placeholder="Enter text" /> {% endcomment %}
+                </div>
+                <input class="btn btn--sub btn--lg  my-md" type="submit" value="Submit" />
+            </form>
+          </div>
       </div>
   </div>
 </main>
